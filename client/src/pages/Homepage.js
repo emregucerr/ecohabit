@@ -26,15 +26,6 @@ const Homepage = () => {
 
   /* TEMPORARY: Move to separate folder with other requests when implementing state management */
   const API_URL = process.env.REACT_APP_API_URL;
-
-  useEffect(() => {
-    if (!loginPending && !loggedIn && !token) {
-      navigate("/login");
-    } else {
-      setLoggedIn(true);
-    }
-  }, []);
-
   // Fetch all habits from back end
   const syncHabits = async () => {
     const config = {
