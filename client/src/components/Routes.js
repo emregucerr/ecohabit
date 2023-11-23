@@ -1,7 +1,7 @@
 /**
  *To avoid bloated App.js component, page routes created at this component.
  */
-
+import PrivateRoute from './PrivateRoute';
 import React from "react";
 import {
   RouterProvider,
@@ -36,7 +36,7 @@ const router = createBrowserRouter(
       <Route path="/locations" element={<LocationsPage />} />
       <Route path="/guides" element={<GuidesPage />} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+<Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/terms" element={<TermsConditionPage />} />
