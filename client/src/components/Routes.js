@@ -9,6 +9,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import PrivateRoute from './PrivateRoute';
 
 import MainLayout from "./MainLayout";
 import Homepage from "../pages/Homepage";
@@ -31,14 +32,16 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
       <Route index element={<Homepage />} />
-      <Route path="/homepage" element={<Navigate replace to="/" />} />
+<PrivateRoute path="/homepage"><Navigate replace to="/" /></PrivateRoute>
       <Route path="/locations" element={<LocationsPage />} />
       <Route path="/guides" element={<GuidesPage />} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+<PrivateRoute path="/profile"><ProfilePage /></PrivateRoute>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/terms" element={<TermsConditionPage />} />
+<PrivateRoute path="/locations"><LocationsPage /></PrivateRoute>
+<PrivateRoute path="/guides"><GuidesPage /></PrivateRoute>
       <Route path="/Demo" element={<Demo />} />
     </Route>
   )
