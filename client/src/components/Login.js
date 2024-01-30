@@ -28,6 +28,23 @@ const LoginBox = styled(Box)(({ theme }) => ({
   maxWidth: '40rem',
 }));
 
+/**
+ * `LoginForm` component renders the login form interface for the application.
+ * 
+ * This component is responsible for rendering input fields for user authentication,
+ * handling user input changes via `handleChange`, managing form submission through 
+ * `handleSubmit`, displaying any login failure messages, and providing options for 
+ * user registration or using alternate login methods (e.g., Google Sign In).
+ * 
+ * Props:
+ * - `handleChange` (Function): Callback to handle changes in input fields.
+ * - `handleSubmit` (Function): Callback to handle form submission.
+ * - `loginData` (Object): Contains the current state of login input fields (email, password).
+ * - `loginFailMessage` (String): Message to be displayed in case of a login failure.
+ * 
+ * Returns a form component structured with email and password fields, login button, 
+ * an optional alert for login failure, and navigation for new user registration or alternate login methods.
+ */
 const LoginForm = ({ handleChange, handleSubmit, loginData, loginFailMessage }) => {
   return (
     <Box component="form" onSubmit={handleSubmit}>
