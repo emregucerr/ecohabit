@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Box, Button, Typography } from "@mui/material";
-import { useLoginContext } from "../contexts/LoginContext";
-import { useNavigate } from "react-router-dom";
 import UserHabitForm from "../components/UserHabitForm";
 import HabitCard from "../components/HabitCard";
 import Weekbar from "../components/WeekBar";
@@ -15,9 +13,7 @@ const Homepage = () => {
   // User specific habits
   const [myHabits, setMyHabits] = useState([]);
   const [showHabitForm, setShowHabitForm] = useState(false);
-  const { loginPending, loggedIn, setLoggedIn } = useLoginContext();
-  const navigate = useNavigate();
-
+  
   // Store categories in an array
   // 5 Categories: (Recycle, Commute, Water, Energy, and Food)
   const habitCategories = habits.map((habit) => habit.category);
@@ -28,12 +24,6 @@ const Homepage = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    if (!loginPending && !loggedIn && !token) {
-      navigate("/login");
-    } else {
-      setLoggedIn(true);
-    }
-  }, []);
 
   // Fetch all habits from back end
   const syncHabits = async () => {
@@ -52,7 +42,7 @@ const Homepage = () => {
   useEffect(() => {
     if (user) {
       syncHabits();
-    }
+    };
   }, [user]);
 
   // Close/open HabitForm
@@ -177,6 +167,7 @@ const Homepage = () => {
       </Grid>
     </Box>
   );
+};
 };
 
 export default Homepage;
