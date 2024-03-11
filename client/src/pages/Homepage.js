@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Box, Button, Typography } from "@mui/material";
 import { useLoginContext } from "../contexts/LoginContext";
-import { useNavigate } from "react-router-dom";
+import PrivateRoute from "../components/PrivateRoute";
+// Removed useNavigate import
 import UserHabitForm from "../components/UserHabitForm";
 import HabitCard from "../components/HabitCard";
 import Weekbar from "../components/WeekBar";
@@ -15,9 +16,8 @@ const Homepage = () => {
   // User specific habits
   const [myHabits, setMyHabits] = useState([]);
   const [showHabitForm, setShowHabitForm] = useState(false);
-  const { loginPending, loggedIn, setLoggedIn } = useLoginContext();
   const navigate = useNavigate();
-
+  // Removed navigate variable
   // Store categories in an array
   // 5 Categories: (Recycle, Commute, Water, Energy, and Food)
   const habitCategories = habits.map((habit) => habit.category);
@@ -27,13 +27,6 @@ const Homepage = () => {
   /* TEMPORARY: Move to separate folder with other requests when implementing state management */
   const API_URL = process.env.REACT_APP_API_URL;
 
-  useEffect(() => {
-    if (!loginPending && !loggedIn && !token) {
-      navigate("/login");
-    } else {
-      setLoggedIn(true);
-    }
-  }, []);
 
   // Fetch all habits from back end
   const syncHabits = async () => {
@@ -110,6 +103,7 @@ const Homepage = () => {
   };
 
   return (
+    <PrivateRoute>
     <Box
       sx={{
         padding: 3,
@@ -176,6 +170,7 @@ const Homepage = () => {
         </Grid>
       </Grid>
     </Box>
+    </PrivateRoute>
   );
 };
 
