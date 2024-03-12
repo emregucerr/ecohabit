@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useLoginContext } from "../contexts/LoginContext";
 import { useUserContext } from "../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+
 
 import {
   Card,
@@ -17,9 +16,7 @@ import {
 } from "@mui/material";
 
 const ProfilePage = () => {
-  const { loginPending, loggedIn } = useLoginContext();
   const { user, setUser, error } = useUserContext();
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -30,11 +27,6 @@ const ProfilePage = () => {
 
   const [showForm, setShowForm] = useState(false);
 
-  useEffect(() => {
-    if (!loginPending && !loggedIn) {
-      navigate("/login");
-    }
-  });
 
   // Clears all form fields and opens/closes form modal
   const toggleForm = () => {
